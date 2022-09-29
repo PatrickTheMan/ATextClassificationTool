@@ -1,5 +1,9 @@
-﻿using System;
+﻿using ATextClassificationTool.Controller;
+using ATextClassificationTool.Singleton;
+using ATextClassificationTool.View;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +24,28 @@ namespace ATextClassificationTool
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+		LearningView learningView = new LearningView();
+
+		public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = MainViewModelSingleton.Instance;
         }
-    }
+
+        private void Learning_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            this.CControl.Content = learningView;
+        }
+
+        private void Knowledge_Btn_Click(object sender, RoutedEventArgs e)
+        {
+			this.CControl.Content = new KnowledgeView();
+		}
+
+		private void Dictionary_Btn_Click(object sender, RoutedEventArgs e)
+		{
+			this.CControl.Content = new DictionaryView();
+		}
+
+	}
 }

@@ -1,8 +1,9 @@
 ﻿
 using System.Reflection;
 
-var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-var iconPath = Path.Combine(outPutDirectory, "Folder\\Img.jpg");
-string icon_path = new Uri(iconPath).LocalPath;
+//C:\Users\patri\Source\Repos\PatrickTheMan\ATextClassificationTool\ATextClassificationTool\4_FileIO\Files\ClassA\bbcsportsfootball.txt
 
-Console.WriteLine(icon_path);
+var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+
+Console.WriteLine(outPutDirectory);

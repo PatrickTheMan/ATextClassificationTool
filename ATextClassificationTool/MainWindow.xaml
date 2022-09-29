@@ -7,6 +7,57 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid
+            Grid.Column="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button
+                Grid.Row="0"
+                Content="Learning"
+                FontSize="20"
+                Click="Learning_Btn_Click"
+                >
+                
+            </Button>
+
+            <Button
+                Grid.Row="1"
+                Content="Knowledge"
+                FontSize="20"
+                Click="Knowledge_Btn_Click"
+                IsEnabled="{Binding LearnedAtLeastOnce}"
+                >
+
+            </Button>
+
+            <Button
+                Grid.Row="2"
+                Content="Dictionary"
+                FontSize="20"
+                Click="Dictionary_Btn_Click"
+                IsEnabled="{Binding LearnedAtLeastOnce}"
+                >
+
+            </Button>
+
+        </Grid>
+
+        <ContentControl
+            x:Name="CControl"
+            Grid.Column="1">
+            
+        </ContentControl>
         
     </Grid>
 </Window>

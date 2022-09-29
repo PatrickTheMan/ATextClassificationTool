@@ -10,7 +10,7 @@ namespace ATextClassificationTool.FileIO
 {
     public class TextFile:FileAdapter
     {
-        const string PROJECTPATH = "C:\\Users\\tha\\source\\repos\\TextClassification\\bin\\Debug\\";
+        const string PROJECTPATH = "C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\";
 
         const string FOLDERA = "ClassA";
         const string FOLDERB = "ClassB";

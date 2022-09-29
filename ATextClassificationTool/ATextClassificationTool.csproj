@@ -55,33 +55,69 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="PropertyChanged\NotifyPropertyChangedHandler.cs" />
+    <Compile Include="Singleton\KnowledgeBuilderSingleton.cs" />
+    <Compile Include="Singleton\MainViewModelSingleton.cs" />
+    <Compile Include="ViewModel\DictionaryViewModel.cs" />
+    <Compile Include="ViewModel\KnowledgeViewModel.cs" />
+    <Compile Include="ViewModel\LearningViewModel.cs" />
+    <Compile Include="ViewModel\TokensViewModel.cs" />
+    <Compile Include="View\DictionaryView.xaml.cs">
+      <DependentUpon>DictionaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\KnowledgeView.xaml.cs">
+      <DependentUpon>KnowledgeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LearningView.xaml.cs">
+      <DependentUpon>LearningView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TokensView.xaml.cs">
+      <DependentUpon>TokensView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="2_Domain\BagOfWords.cs" />
-    <Compile Include="2_Domain\FileLists.cs" />
-    <Compile Include="2_Domain\Knowledge.cs" />
-    <Compile Include="2_Domain\Vectors.cs" />
-    <Compile Include="2_Domain\WordItem.cs" />
-    <Compile Include="3_Business\Tokenization.cs" />
-    <Compile Include="4_FileIO\FileAdapter.cs" />
-    <Compile Include="4_FileIO\TextFile.cs" />
-    <Compile Include="5_Foundation\StringOperations.cs" />
+    <Compile Include="Model\2_Domain\BagOfWords.cs" />
+    <Compile Include="Model\2_Domain\FileLists.cs" />
+    <Compile Include="Model\2_Domain\Knowledge.cs" />
+    <Compile Include="Model\2_Domain\Vectors.cs" />
+    <Compile Include="Model\2_Domain\WordItem.cs" />
+    <Compile Include="Model\3_Business\Tokenization.cs" />
+    <Compile Include="Model\4_FileIO\FileAdapter.cs" />
+    <Compile Include="Model\4_FileIO\TextFile.cs" />
+    <Compile Include="Model\5_Foundation\StringOperations.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="1_Controller\AbstractFileListsBuilder.cs" />
-    <Compile Include="1_Controller\AbstractKnowledgeBuilder.cs" />
-    <Compile Include="1_Controller\AbstractVectorsBuilder.cs" />
-    <Compile Include="1_Controller\FileListBuilder.cs" />
-    <Compile Include="1_Controller\KnowledgeBuilder.cs" />
-    <Compile Include="1_Controller\VectorsBuilder.cs" />
+    <Compile Include="Model\1_Controller\AbstractFileListsBuilder.cs" />
+    <Compile Include="Model\1_Controller\AbstractKnowledgeBuilder.cs" />
+    <Compile Include="Model\1_Controller\AbstractVectorsBuilder.cs" />
+    <Compile Include="Model\1_Controller\FileListBuilder.cs" />
+    <Compile Include="Model\1_Controller\KnowledgeBuilder.cs" />
+    <Compile Include="Model\1_Controller\VectorsBuilder.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\DictionaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\KnowledgeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LearningView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TokensView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -109,5 +145,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

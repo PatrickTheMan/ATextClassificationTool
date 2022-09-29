@@ -1,6 +1,9 @@
+using ATextClassificationTool.Business;
 using ATextClassificationTool.Domain;
 using ATextClassificationTool.FileIO;
 using ATextClassificationTool.Foundation;
+using Microsoft.VisualBasic.FileIO;
+using System.Reflection;
 
 namespace TestProjectTC
 {
@@ -40,12 +43,13 @@ namespace TestProjectTC
         public void TestFileGetAllFileNames()
         {
             // arrange
-            string folderA = "ClassA";
+			string folderA = "ClassA";
             string fileType = "txt";
+
             List<string> expected = new List<string>();
-            expected.Add("C:\\Users\\tha\\source\\repos\\WpfAppTextClassification\\bin\\Debug\\" + folderA + "\\bbcsportsfootball." + fileType);
-            expected.Add("C:\\Users\\tha\\source\\repos\\WpfAppTextClassification\\bin\\Debug\\" + folderA + "\\dailymirrornfl." + fileType);
-            expected.Add("C:\\Users\\tha\\source\\repos\\WpfAppTextClassification\\bin\\Debug\\" + folderA + "\\sunsportsboxing." + fileType);
+            expected.Add("C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\bbcsportsfootball." + fileType);
+            expected.Add("C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\dailymirrornfl." + fileType);
+            expected.Add("C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\sunsportsboxing." + fileType);
 
             // act
             FileAdapter fa = new TextFile(fileType);
@@ -64,7 +68,7 @@ namespace TestProjectTC
             string folderA = "ClassA";
             string fileType = "txt";
             string fileName = "filnavn";
-            string expected = "C:\\Users\\tha\\source\\repos\\WpfAppTextClassification\\bin\\Debug\\" + folderA + "\\filnavn." + fileType;
+            string expected = "C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\filnavn." + fileType;
 
             // act
             TextFile tf = new TextFile(fileType);
@@ -73,5 +77,39 @@ namespace TestProjectTC
             // assert
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void TestGetFileName()
+        {
+            // I have here followed the earlyer tests setup
+            // First the different file and folder parts is declared and initiated
+            // Then I have used the StringOperations class with the getFileName to get the actual value
+            // Lastly the expected and actual values are compared
+
+			// arrange
+			string folderA = "ClassA";
+			string fileType = ".txt";
+			string filePath = "C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\nameoffile" + fileType;
+			string expected = "nameoffile";
+
+            // act
+			string actual = StringOperations.getFileName(filePath);
+
+			// assert
+			Assert.AreEqual(expected, actual);
+		}
+        [TestMethod]
+        public void TestRemovePunctuation()
+        {
+			// arrange
+			string token = "Token-/.,...\"!:;'@(){}[]*\\_";
+			string expected = "token";
+
+			// act
+			string actual = Tokenization.RemovePunctuation(token);
+
+			// assert
+			Assert.AreEqual(expected, actual);
+		}
+
     }
 }
