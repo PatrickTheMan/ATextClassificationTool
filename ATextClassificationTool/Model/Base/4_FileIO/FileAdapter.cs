@@ -13,10 +13,10 @@ namespace ATextClassificationTool.FileIO
         {
             _fileType = fileType;
         }
-        public abstract List<string> GetAllFileNames(string folderName);
-        public abstract string GetAllTextFromFileA(string fileName);
+        public abstract List<string> GetAllFileNames(string filePath);
+        public abstract string GetAllTextFromFileA(string filePath);
 
-        public abstract string GetAllTextFromFileB(string fileName);
+        public abstract string GetAllTextFromFileB(string filePath);
 
         public string GetFileType()
         {

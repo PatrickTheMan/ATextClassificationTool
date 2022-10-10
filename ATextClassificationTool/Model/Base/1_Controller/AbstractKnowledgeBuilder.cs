@@ -23,6 +23,9 @@ namespace ATextClassificationTool.Controller
         // step 3
         public abstract void BuildVectors();
 
+        // step 4
+        public abstract void BuildKNN();
+
         // step after each training
         public abstract Knowledge GetKnowledge();
     }

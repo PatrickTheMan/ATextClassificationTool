@@ -47,5 +47,9 @@ namespace ATextClassificationTool
 			this.CControl.Content = new DictionaryView();
 		}
 
-	}
+        private void NewText_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            this.CControl.Content = new AddTextView();
+        }
+    }
 }

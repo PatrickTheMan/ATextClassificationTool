@@ -20,6 +20,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Button
@@ -46,6 +47,16 @@
                 Content="Dictionary"
                 FontSize="20"
                 Click="Dictionary_Btn_Click"
+                IsEnabled="{Binding LearnedAtLeastOnce}"
+                >
+
+            </Button>
+
+            <Button
+                Grid.Row="3"
+                Content="New Text"
+                FontSize="20"
+                Click="NewText_Btn_Click"
                 IsEnabled="{Binding LearnedAtLeastOnce}"
                 >
 

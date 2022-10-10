@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ATextClassificationTool.Model.Algorithms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace ATextClassificationTool.Domain
         private FileLists _fileLists;
         private BagOfWords _bagOfWords;
         private Vectors _vectors;
+        private KNN _knn;
 
         public Knowledge()
         {
@@ -31,6 +33,10 @@ namespace ATextClassificationTool.Domain
         {
             return _vectors;
         }
+        public KNN GetKNN()
+        {
+            return _knn;
+        }
         public void SetFileLists(FileLists fileLists)
         {
             _fileLists = fileLists;
@@ -44,6 +50,10 @@ namespace ATextClassificationTool.Domain
         public void SetVectors(Vectors vectors)
         {
             _vectors = vectors;
+        }
+        public void SetKNN(KNN knn)
+        {
+            _knn = knn;
         }
 
     }

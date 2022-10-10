@@ -18,20 +18,11 @@ namespace ATextClassificationTool.ViewModel
 	{
 		public TokensViewModel(string chosenFileName)
 		{
-			this.ShowListTokens = new ObservableCollection<string>();
+			
 			KnowledgeBuilder knowledgeBuilder = KnowledgeBuilderSingleton.Instance;
-			FileAdapter fileAdapter = new TextFile("txt");
 
-			foreach (var filePath in knowledgeBuilder.GetKnowledge().GetFileLists().GetBoth())
-			{
-				if (StringOperations.getFileName(filePath).Equals(chosenFileName))
-				{
-					foreach (var token in Tokenization.Tokenize(fileAdapter.GetAllTextFromFileA(filePath)))
-					{
-						ShowListTokens.Add(token);
-					}
-				}
-			}
+			this.ShowListTokens = knowledgeBuilder.GetDictionaryFromFile(chosenFileName);
+
 			this.AmountOfWords = ShowListTokens.Count;
 
 			this.CurrentFileName = chosenFileName+" - ( "+AmountOfWords+" total entries )";

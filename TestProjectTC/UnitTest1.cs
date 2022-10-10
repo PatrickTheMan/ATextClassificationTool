@@ -1,4 +1,5 @@
 using ATextClassificationTool.Business;
+using ATextClassificationTool.Controller;
 using ATextClassificationTool.Domain;
 using ATextClassificationTool.FileIO;
 using ATextClassificationTool.Foundation;
@@ -88,8 +89,8 @@ namespace TestProjectTC
 			// arrange
 			string folderA = "ClassA";
 			string fileType = ".txt";
-			string filePath = "C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\nameoffile" + fileType;
-			string expected = "nameoffile";
+			string filePath = "C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\nameoffile." + fileType;
+			string expected = "nameoffile.";
 
             // act
 			string actual = StringOperations.getFileName(filePath);
@@ -110,6 +111,61 @@ namespace TestProjectTC
 			// assert
 			Assert.AreEqual(expected, actual);
 		}
+		[TestMethod]
+		public void TestSingleTextVectorsAmount()
+        {
+			// arrange
+			string folderA = "ClassA";
+            string fileName = "bbcsportsfootball";
+			string fileType = "txt";
 
-    }
+			string filePath = ("C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\" + fileName + "." + fileType);
+
+			// act
+            KnowledgeBuilder knowledgeBuilder = new KnowledgeBuilder();
+            knowledgeBuilder.Train();
+
+			FileAdapter fa = new TextFile(fileType);
+
+            List<bool> actualVectors = knowledgeBuilder.GetKnowledge().GetVectors().GetVectorToA()[0];
+            ICollection<string> actualWords = knowledgeBuilder.GetKnowledge().GetBagOfWords().GetAllWordsInDictionary();
+
+			// assert
+			Assert.AreEqual(actualWords.Count, actualVectors.Count);
+		}
+		[TestMethod]
+		public void TestSingleTextVectorsWithListOfWordsAndDictionary()
+		{
+			// arrange
+			string folderA = "ClassA";
+			string fileName = "bbcsportsfootball.";
+			string fileType = "txt";
+
+			string filePath = ("C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\" + fileName + fileType);
+
+			// act
+			KnowledgeBuilder knowledgeBuilder = new KnowledgeBuilder();
+			knowledgeBuilder.Train();
+
+			FileAdapter fa = new TextFile(fileType);
+
+			List<bool> actualVectors = knowledgeBuilder.GetKnowledge().GetVectors().GetVectorToA()[0];
+			List<string> actualWords = Tokenization.Tokenize(fa.GetAllTextFromFileA(filePath));
+            ICollection<string> actualDictionary = knowledgeBuilder.GetKnowledge().GetBagOfWords().GetAllWordsInDictionary();
+
+            // assert
+            for (int i = 0; i < actualVectors.Count; i++)
+            {
+				if (actualVectors[i])
+				{
+					Assert.IsTrue(actualWords.Contains(actualDictionary.ToList()[i]));
+				}
+				else
+				{
+					Assert.IsFalse(actualWords.Contains(actualDictionary.ToList()[i]));
+				}
+			}
+		}
+
+	}
 }

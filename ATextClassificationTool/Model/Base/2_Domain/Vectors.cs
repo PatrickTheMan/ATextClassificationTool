@@ -28,5 +28,16 @@ namespace ATextClassificationTool.Domain
         {
             _vectorsInB.Add(vector);
         }
-    }
+
+		public List<List<bool>> GetVectorToA()
+		{
+			return _vectorsInA;
+		}
+
+		public List<List<bool>> GetVectorToB()
+		{
+            return _vectorsInB;
+		}
+
+	}
 }

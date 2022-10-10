@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="ATextClassificationTool.View.AddTextView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ATextClassificationTool.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <ContentControl
+        x:Name="SubCControl">
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <Viewbox
+            Grid.Column="1"
+            Grid.Row="1"
+            >
+
+                <Label
+                Content="New Text"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                FontSize="25"
+                >
+
+                </Label>
+            </Viewbox>
+
+            <TextBox
+            Grid.Column="1"
+            Grid.Row="2"
+            x:Name="TextContainer_TextBox"
+            >
+
+            </TextBox>
+
+            <Grid
+            Grid.Column="1"
+            Grid.Row="3"
+            >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button
+                Grid.Column="0"
+                Grid.Row="0"
+                FontSize="15"
+                Content="Add As Plot Text"
+                Click="AddPlotText_Btn_Click"
+                >
+
+                </Button>
+
+                <Button
+                Grid.Column="1"
+                Grid.Row="0"
+                FontSize="15"
+                Content="?Prediction?"
+                Click="Prediction_Btn_Click"
+                >
+
+                </Button>
+
+                <Button
+                Grid.Column="2"
+                Grid.Row="0"
+                FontSize="15"
+                Content="Add As ESport Text"
+                Click="AddESportText_Btn_Click"
+                >
+
+                </Button>
+
+            </Grid>
+
+        </Grid>
+
+    </ContentControl>
+</UserControl>

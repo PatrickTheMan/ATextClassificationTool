@@ -10,7 +10,7 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
@@ -24,7 +24,7 @@
         <Button
             Grid.Column="1"
             Grid.Row="1"
-            Content="Learn"
+            Content="Reset &amp; Learn"
             FontSize="25"
             Click="Learn_Btn_Click"
             >

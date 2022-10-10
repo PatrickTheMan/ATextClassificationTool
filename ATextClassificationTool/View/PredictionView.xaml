@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="ATextClassificationTool.View.PredictionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ATextClassificationTool.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid
+            Grid.Column="1"
+            Grid.Row="1"
+            >
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Viewbox
+            Grid.Column="0"
+            Grid.Row="0"
+            >
+
+                <Label
+                Content="ESport"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                FontSize="25"
+                >
+
+                </Label>
+            </Viewbox>
+
+            <Viewbox
+            Grid.Column="1"
+            Grid.Row="0"
+            >
+
+                <Label
+                Content="Plot"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                FontSize="25"
+                >
+
+                </Label>
+            </Viewbox>
+
+            <Viewbox
+            Grid.Column="2"
+            Grid.Row="0"
+            >
+
+                <Label
+                Content="{Binding PredictionLabel}"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                FontSize="25"
+                >
+
+                </Label>
+            </Viewbox>
+
+        </Grid>
+        
+        
+
+        <Grid
+            Grid.Column="1"
+            Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ProgressBar
+                Grid.Column="0"
+                Orientation="Vertical"
+                Value="{Binding ClassASimilarity}"
+                >
+
+            </ProgressBar>
+
+            <TextBlock
+                Grid.Column="0"
+                Text="{Binding ClassASimilarity, StringFormat= \{0\}% }"
+                FontSize="15"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                >
+                
+            </TextBlock>
+
+            <ProgressBar
+                Grid.Column="1"
+                Orientation="Vertical"
+                Value="{Binding ClassBSimilarity}"
+                >
+
+            </ProgressBar>
+
+            <TextBlock
+                Grid.Column="1"
+                Text="{Binding ClassBSimilarity, StringFormat= \{0\}% }"
+                FontSize="15"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                >
+
+            </TextBlock>
+
+            <Grid
+                Grid.Column="2"
+                >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <DockPanel
+                    Grid.Column="1">
+
+                    <Label
+                        Content="k ="
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        FontWeight="Bold"
+                    >
+
+                    </Label>
+
+                    <Label
+                        Content="{Binding KValue}"
+                        VerticalAlignment="Top"
+                        FontWeight="Bold"
+                        Width="30"
+                    >
+
+                    </Label>
+
+                </DockPanel>
+                
+
+                <Slider
+                    Grid.Column="2" 
+                    IsDirectionReversed="True"
+                    Maximum="{Binding KMax}"
+                    Minimum="{Binding KMin}"
+                    Value="{Binding KValue}" 
+                    ValueChanged="Slider_ValueChanged" 
+                    HorizontalAlignment="Center" 
+                    Orientation="Vertical" 
+                    IsSnapToTickEnabled="True"
+                    />
+
+            </Grid>
+            
+        </Grid>
+
+    </Grid>
+</UserControl>
