@@ -166,7 +166,7 @@
                     IsDirectionReversed="True"
                     Maximum="{Binding KMax}"
                     Minimum="{Binding KMin}"
-                    Value="{Binding KValue}" 
+                    Value="{Binding KValue}"
                     ValueChanged="Slider_ValueChanged" 
                     HorizontalAlignment="Center" 
                     Orientation="Vertical" 

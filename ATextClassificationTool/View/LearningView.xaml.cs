@@ -34,8 +34,15 @@ namespace ATextClassificationTool.View
 
 		private void Learn_Btn_Click(object sender, RoutedEventArgs e)
 		{
-			learningViewModel.newLearning();
-			MainViewModelSingleton.Instance.hasLearned();
+			learningViewModel.NewLearning();
+
+			learningViewModel.LearnedAtLeastOnce = true;
+			MainViewModelSingleton.Instance.LearnedAtLeastOnce = true;
+		}
+
+		private void Stemming_Btn_Click(object sender, RoutedEventArgs e)
+		{
+			learningViewModel.Stemming();
 		}
 	}
 }

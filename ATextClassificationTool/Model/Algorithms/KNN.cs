@@ -24,7 +24,7 @@ namespace ATextClassificationTool.Model.Algorithms
 			this._classBSimilarities = new Dictionary<string, double>();
 		}
 
-		public IDictionary<string, double> GetListOfDistances(string fileName)
+		public IDictionary<string, double> GetListOfSimilarities(string fileName)
 		{
 			Dictionary<string, double> results = new Dictionary<string, double>();
 
@@ -35,8 +35,8 @@ namespace ATextClassificationTool.Model.Algorithms
 				if (!classASim.Key.Equals(fileName))
 				{
 					distance = Math.Sqrt(
-							Math.Pow(_classASimilarities[fileName] + _classBSimilarities[fileName], 2) +
-							Math.Pow(classASim.Value + _classBSimilarities[classASim.Key], 2)
+							Math.Pow(_classASimilarities[fileName] - _classBSimilarities[classASim.Key], 2) +
+							Math.Pow(classASim.Value - _classBSimilarities[fileName], 2)
 						);
 
 					results.Add(classASim.Key, distance);
@@ -53,21 +53,16 @@ namespace ATextClassificationTool.Model.Algorithms
 			}
 
 			int countT = 0;
-			int countF = 0;
 			foreach (var b in KnowledgeBuilderSingleton.Instance.GetVectorsFromFile(filePath, "ClassA"))
 			{
 				if (b)
 				{
 					countT++;
 				}
-				else
-				{
-					countF++;
-				}	
 			}
-			_classASimilarities[StringOperations.getFileName(filePath)] = countT/(countT+countF);
+			_classASimilarities[StringOperations.getFileName(filePath)] = countT;
 
-			Debug.WriteLine(countT + " / " + countF + " / " + ((decimal)countT / (countT + countF)));
+			Debug.WriteLine(countT);
 		}
 		public void InsertEntryB(string filePath)
 		{
@@ -77,21 +72,16 @@ namespace ATextClassificationTool.Model.Algorithms
 			}
 
 			int countT = 0;
-			int countF = 0;
 			foreach (var b in KnowledgeBuilderSingleton.Instance.GetVectorsFromFile(filePath, "ClassB"))
 			{
 				if (b)
 				{
 					countT++;
 				}
-				else
-				{
-					countF++;
-				}
 			}
-			_classBSimilarities[StringOperations.getFileName(filePath)] = ((double)countT / (countT + countF));
+			_classBSimilarities[StringOperations.getFileName(filePath)] = ((double)countT);
 
-			Debug.WriteLine(countT + " / " + countF + " / " + ((double)countT / (countT + countF)));
+			Debug.WriteLine(countT);
 		}
 
 		public double GetClassASimilarities(string fileName)

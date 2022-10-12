@@ -2,7 +2,9 @@
 using ATextClassificationTool.PropertyChanged;
 using ATextClassificationTool.Singleton;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -12,14 +14,30 @@ namespace ATextClassificationTool.ViewModel
 {
 	public class PredictionViewModel : NotifyPropertyChangedHandler
 	{
-		private IDictionary<string, double> distanceDictionary;
-
+		private IDictionary<string, double> orderedSimilaritiesDictionary = new Dictionary<string, double>();
 
 
 		public PredictionViewModel(string text)
 		{
-			//TODO - FIX DESTINATION CAL
-			distanceDictionary = KnowledgeBuilderSingleton.Instance.GetKnowledge().GetKNN().GetListOfDistances("ESport Det ikoniske FIFA-spil får nyt navn");
+			IDictionary<string, double> similaritiesDictionary = KnowledgeBuilderSingleton.Instance.GetKnowledge().GetKNN().GetListOfSimilarities("Plot Avengers Endgame");
+
+			SortedList<double, string> tempSortList = new SortedList<double, string>();
+			foreach (var item in similaritiesDictionary)
+			{
+				if (tempSortList.ContainsKey(item.Value))
+				{
+					tempSortList.Add(item.Value + 0.000000001, item.Key);
+				} else
+				{
+					tempSortList.Add(item.Value, item.Key);
+				}
+			}
+			foreach (var item in tempSortList.Reverse())
+			{
+				orderedSimilaritiesDictionary.Add(item.Value,item.Key);
+			}
+
+			this.Kmax = orderedSimilaritiesDictionary.Count;
 		}
 
 		#region Propertyes
@@ -32,7 +50,7 @@ namespace ATextClassificationTool.ViewModel
 			set { predictionLabel = value; NotifyPropertyChanged(); }
 		}
 
-		private double classASimilarity = 50;
+		private double classASimilarity;
 
 		public double ClassASimilarity
 		{
@@ -40,7 +58,7 @@ namespace ATextClassificationTool.ViewModel
 			set { classASimilarity = value; NotifyPropertyChanged(); }
 		}
 
-		private double classBSimilarity = 50;
+		private double classBSimilarity;
 
 		public double ClassBSimilarity
 		{
@@ -48,7 +66,7 @@ namespace ATextClassificationTool.ViewModel
 			set { classBSimilarity =  value; NotifyPropertyChanged(); }
 		}
 
-		private double Kmax = 10;
+		private double Kmax;
 
 		public double KMax
 		{
@@ -64,47 +82,67 @@ namespace ATextClassificationTool.ViewModel
 			set { Kmin = value; NotifyPropertyChanged(); }
 		}
 
-		private double Kvalue = 3;
+		private double kValue;
 
 		public double KValue
 		{
-			get { return Kvalue; }
-			set { Kvalue = value; NotifyPropertyChanged(); }
+			get { return kValue; }
+			set { kValue = value; NotifyPropertyChanged(); UpdatePercentages(); UpdatePrediction(); }
 		}
 
 		#endregion Propertyes
 
-		public void UpdatePercentages()
+		#region Functionality
+
+		private void UpdatePrediction()
+		{
+			if (ClassASimilarity > ClassBSimilarity)
+			{
+				PredictionLabel = "ESport";
+			} else
+			{
+				PredictionLabel = "Plot";
+			}
+		}
+
+		private void UpdatePercentages()
 		{
 			double totalA = 0.0;
 			double totalB = 0.0;
 
-			foreach (var item in distanceDictionary)
+			int count = 0;
+			foreach (var item in orderedSimilaritiesDictionary)
 			{
-				foreach (var filePath in KnowledgeBuilderSingleton.Instance.GetKnowledge().GetFileLists().GetA())
-				{
-					if (StringOperations.getFileName(filePath).Equals(item.Key))
+				if (kValue > count) {
+					foreach (var filePath in KnowledgeBuilderSingleton.Instance.GetKnowledge().GetFileLists().GetA())
 					{
-						totalA += item.Value;
-						Debug.WriteLine("A ++ "+ item.Value);
-						break;
+						if (StringOperations.getFileName(filePath).Equals(item.Key))
+						{
+							totalA += item.Value;
+							Debug.WriteLine("A ++ " + item.Value);
+							break;
+						}
 					}
-				}
-				foreach (var filePath in KnowledgeBuilderSingleton.Instance.GetKnowledge().GetFileLists().GetB())
-				{
-					if (StringOperations.getFileName(filePath).Equals(item.Key))
+					foreach (var filePath in KnowledgeBuilderSingleton.Instance.GetKnowledge().GetFileLists().GetB())
 					{
-						totalB += item.Value;
-						Debug.WriteLine("B ++ " + item.Value);
-						break;
+						if (StringOperations.getFileName(filePath).Equals(item.Key))
+						{
+							totalB += item.Value;
+							Debug.WriteLine("B ++ " + item.Value);
+							break;
+						}
 					}
+				} else
+				{
+					break;
 				}
+				count++;
 			}
 
 			double totalAB = totalA + totalB;
 
-			double percentA = Math.Round(100-(totalA / totalAB)*100,2);
-			double percentB = Math.Round(100-(totalB / totalAB)*100,2);
+			double percentA = Math.Round((totalA / totalAB)*100,2);
+			double percentB = Math.Round((totalB / totalAB)*100,2);
 
 			Debug.WriteLine("Percent A: "+percentA);
 			Debug.WriteLine("Percent B: " + percentB);
@@ -112,6 +150,8 @@ namespace ATextClassificationTool.ViewModel
 			this.ClassASimilarity = percentA;
 			this.ClassBSimilarity = percentB;
 		}
+
+		#endregion Functionality
 
 	}
 }

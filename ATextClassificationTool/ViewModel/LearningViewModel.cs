@@ -22,6 +22,14 @@ namespace ATextClassificationTool.ViewModel
 
 		#region Properties
 
+		private bool learnedAtLeastOnce = false;
+
+		public bool LearnedAtLeastOnce
+		{
+			get { return learnedAtLeastOnce; }
+			set { learnedAtLeastOnce = value; NotifyPropertyChanged(); }
+		}
+
 		private string learningTime = "Non";
 
 		public string LearningTime
@@ -30,20 +38,40 @@ namespace ATextClassificationTool.ViewModel
 			set { if (learningTime != value) { learningTime = value; NotifyPropertyChanged(); }; }
 		}
 
+		private string stemmingTime = "Non";
+
+		public string StemmingTime
+		{
+			get { return stemmingTime; }
+			set { if (stemmingTime != value) { stemmingTime = value; NotifyPropertyChanged(); }; }
+		}
+
 		#endregion Properties
 
 		#region Methods
 
-		public void newLearning()
+		public void NewLearning()
 		{
 			Stopwatch stopwatch = new Stopwatch();
 			stopwatch.Start();
 
 			// initiate the learning process
-			this.knowledgeBuilder.Train();
+			knowledgeBuilder.Train();
 
 			stopwatch.Stop();
 			LearningTime = ""+Math.Round((double)stopwatch.ElapsedMilliseconds / 1000, 3)+" sec elapsed";
+		}
+
+		public void Stemming()
+		{
+			Stopwatch stopwatch = new Stopwatch();
+			stopwatch.Start();
+
+			// initiate the stemming process
+			//knowledgeBuilder.Stemming();
+
+			stopwatch.Stop();
+			StemmingTime = "" + Math.Round((double)stopwatch.ElapsedMilliseconds / 1000, 3) + " sec elapsed";
 		}
 
 		#endregion Methods

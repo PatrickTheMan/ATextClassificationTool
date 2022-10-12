@@ -18,10 +18,5 @@ namespace ATextClassificationTool
 			set { learnedAtLeastOnce = value; NotifyPropertyChanged(); }
 		}
 
-		public void hasLearned()
-		{
-			this.LearnedAtLeastOnce = true;
-		}
-
 	}
 }

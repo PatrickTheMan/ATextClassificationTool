@@ -32,8 +32,6 @@ namespace ATextClassificationTool.View
 		private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
 		{
 			predictionViewModel.KValue = e.NewValue;
-
-			predictionViewModel.UpdatePercentages();
 		}
 	}
 }
