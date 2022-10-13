@@ -10,7 +10,6 @@ using ATextClassificationTool.Business;
 using ATextClassificationTool.Domain;
 using ATextClassificationTool.FileIO;
 using ATextClassificationTool.Foundation;
-using ATextClassificationTool.Model.Algorithms;
 
 namespace ATextClassificationTool.Controller
 {
@@ -175,7 +174,7 @@ namespace ATextClassificationTool.Controller
                         text = _fileAdapter.GetAllTextFromFileA(_fileLists.GetA()[i]);
                     }
                     else{
-                        text = _fileAdapter.GetAllTextFromFileB(_fileLists.GetA()[i]);
+                        text = _fileAdapter.GetAllTextFromFileB(_fileLists.GetB()[i]);
                     }
                     List<string> wordsInFile = Tokenization.Tokenize(text);
                     if (wordsInFile.Contains(key)){
@@ -236,10 +235,11 @@ namespace ATextClassificationTool.Controller
 
 		public override void BuildKNN()
 		{
-			if (_vectors == null)
-			{
-				BuildVectors();
-			}
+            if (_vectors == null)
+            {
+                BuildVectors();
+            }
+
             _knn = new KNN();
 
 			AddToKNN("ClassA");

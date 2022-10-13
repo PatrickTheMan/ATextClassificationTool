@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace ATextClassificationTool.Model.Algorithms
+namespace ATextClassificationTool.Domain
 {
 	public class KNN
 	{
@@ -60,10 +60,10 @@ namespace ATextClassificationTool.Model.Algorithms
 					countT++;
 				}
 			}
-			_classASimilarities[StringOperations.getFileName(filePath)] = countT;
+            _classASimilarities[StringOperations.getFileName(filePath)] = ((double)countT / KnowledgeBuilderSingleton.Instance.GetDictionaryFromFile(StringOperations.getFileName(filePath)).Count);
 
-			Debug.WriteLine(countT);
-		}
+            Debug.WriteLine("ClassA-Sim: "+_classASimilarities[StringOperations.getFileName(filePath)]);
+        }
 		public void InsertEntryB(string filePath)
 		{
 			if (filePath.Length == 0)
@@ -79,10 +79,10 @@ namespace ATextClassificationTool.Model.Algorithms
 					countT++;
 				}
 			}
-			_classBSimilarities[StringOperations.getFileName(filePath)] = ((double)countT);
+            _classBSimilarities[StringOperations.getFileName(filePath)] = ((double)countT / KnowledgeBuilderSingleton.Instance.GetDictionaryFromFile(StringOperations.getFileName(filePath)).Count);
 
-			Debug.WriteLine(countT);
-		}
+			Debug.WriteLine("ClassB-Sim: " + _classBSimilarities[StringOperations.getFileName(filePath)]);
+        }
 
 		public double GetClassASimilarities(string fileName)
 		{

@@ -48,9 +48,9 @@ namespace TestProjectTC
             string fileType = "txt";
 
             List<string> expected = new List<string>();
-            expected.Add("C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\bbcsportsfootball." + fileType);
-            expected.Add("C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\dailymirrornfl." + fileType);
-            expected.Add("C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\sunsportsboxing." + fileType);
+            expected.Add("C:\\Users\\Patrick\\Source\\Repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\bbcsportsfootball." + fileType);
+            expected.Add("C:\\Users\\Patrick\\Source\\Repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\dailymirrornfl." + fileType);
+            expected.Add("C:\\Users\\Patrick\\Source\\Repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\sunsportsboxing." + fileType);
 
             // act
             FileAdapter fa = new TextFile(fileType);
@@ -69,7 +69,7 @@ namespace TestProjectTC
             string folderA = "ClassA";
             string fileType = "txt";
             string fileName = "filnavn";
-            string expected = "C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\filnavn." + fileType;
+            string expected = "C:\\Users\\Patrick\\Source\\Repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\filnavn." + fileType;
 
             // act
             TextFile tf = new TextFile(fileType);
@@ -89,7 +89,7 @@ namespace TestProjectTC
 			// arrange
 			string folderA = "ClassA";
 			string fileType = ".txt";
-			string filePath = "C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\nameoffile." + fileType;
+			string filePath = "C:\\Users\\Patrick\\Source\\Repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\nameoffile." + fileType;
 			string expected = "nameoffile.";
 
             // act
@@ -119,7 +119,7 @@ namespace TestProjectTC
             string fileName = "bbcsportsfootball";
 			string fileType = "txt";
 
-			string filePath = ("C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\" + fileName + "." + fileType);
+			string filePath = ("C:\\Users\\Patrick\\Source\\Repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\" + fileName + "." + fileType);
 
 			// act
             KnowledgeBuilder knowledgeBuilder = new KnowledgeBuilder();
@@ -141,7 +141,7 @@ namespace TestProjectTC
 			string fileName = "bbcsportsfootball.";
 			string fileType = "txt";
 
-			string filePath = ("C:\\Users\\patri\\source\\repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\" + fileName + fileType);
+			string filePath = ("C:\\Users\\Patrick\\Source\\Repos\\PatrickTheMan\\ATextClassificationTool\\ATextClassificationTool\\bin\\Debug\\" + folderA + "\\" + fileName + fileType);
 
 			// act
 			KnowledgeBuilder knowledgeBuilder = new KnowledgeBuilder();

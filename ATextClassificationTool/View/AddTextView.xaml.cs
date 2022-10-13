@@ -1,4 +1,5 @@
-﻿using ATextClassificationTool.Singleton;
+﻿using ATextClassificationTool.Foundation;
+using ATextClassificationTool.Singleton;
 using ATextClassificationTool.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace ATextClassificationTool.View
 	/// </summary>
 	public partial class AddTextView : UserControl
 	{
+		AddTextViewModel addTextViewModel = new AddTextViewModel();
 		public AddTextView()
 		{
 			InitializeComponent();
@@ -30,19 +32,24 @@ namespace ATextClassificationTool.View
 
 		private void AddPlotText_Btn_Click(object sender, RoutedEventArgs e)
 		{
-
-		}
+			this.addTextViewModel.AddToFolderB(this.FileNameContainer_TextBox.Text,this.TextContainer_TextBox.Text);
+            this.FileNameContainer_TextBox.Text = "New Text";
+            this.TextContainer_TextBox.Text = "Content here";
+        }
 
 		private void AddESportText_Btn_Click(object sender, RoutedEventArgs e)
 		{
-
-		}
+			this.addTextViewModel.AddToFolderA(this.FileNameContainer_TextBox.Text, this.TextContainer_TextBox.Text);
+			this.FileNameContainer_TextBox.Text = "New Text";
+			this.TextContainer_TextBox.Text = "Content here";
+        }
 
 		private void Prediction_Btn_Click(object sender, RoutedEventArgs e)
 		{
-			//KnowledgeBuilderSingleton.Instance.GetKnowledge().GetKNN().GetListOfDistances("ESport Heroic henter stortalent");
-			
-			this.SubCControl.Content = new PredictionView(this.TextContainer_TextBox.Text);
+            this.addTextViewModel.AddToFolderA(this.FileNameContainer_TextBox.Text, this.TextContainer_TextBox.Text);
+			this.addTextViewModel.AddKNN(this.FileNameContainer_TextBox.Text);
+            this.SubCControl.Content = new PredictionView(this.FileNameContainer_TextBox.Text);
+			this.addTextViewModel.DeleteFromFolderA(this.FileNameContainer_TextBox.Text);
 		}
 	}
 }

@@ -55,8 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Algorithms\KNN.cs" />
-    <Compile Include="Model\Base\1_Controller\AbstractKNNBuilder.cs" />
+    <Compile Include="Model\Base\2_Domain\KNN.cs" />
     <Compile Include="ViewModel\AddTextViewModel.cs" />
     <Compile Include="ViewModel\LoadingViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

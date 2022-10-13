@@ -19,7 +19,7 @@ namespace ATextClassificationTool.ViewModel
 
 		public PredictionViewModel(string text)
 		{
-			IDictionary<string, double> similaritiesDictionary = KnowledgeBuilderSingleton.Instance.GetKnowledge().GetKNN().GetListOfSimilarities("Plot Avengers Endgame");
+			IDictionary<string, double> similaritiesDictionary = KnowledgeBuilderSingleton.Instance.GetKnowledge().GetKNN().GetListOfSimilarities(text);
 
 			SortedList<double, string> tempSortList = new SortedList<double, string>();
 			foreach (var item in similaritiesDictionary)
@@ -42,7 +42,7 @@ namespace ATextClassificationTool.ViewModel
 
 		#region Propertyes
 
-		private string predictionLabel = "PHERE";
+		private string predictionLabel = "PREDICTIONHERE";
 
 		public string PredictionLabel
 		{
@@ -119,7 +119,7 @@ namespace ATextClassificationTool.ViewModel
 						if (StringOperations.getFileName(filePath).Equals(item.Key))
 						{
 							totalA += item.Value;
-							Debug.WriteLine("A ++ " + item.Value);
+							Debug.WriteLine("A ++ " + item.Value + item.Key);
 							break;
 						}
 					}
@@ -128,7 +128,7 @@ namespace ATextClassificationTool.ViewModel
 						if (StringOperations.getFileName(filePath).Equals(item.Key))
 						{
 							totalB += item.Value;
-							Debug.WriteLine("B ++ " + item.Value);
+							Debug.WriteLine("B ++ " + item.Value + item.Key);
 							break;
 						}
 					}
